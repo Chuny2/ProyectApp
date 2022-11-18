@@ -15,23 +15,23 @@ public class ManagementCart {
 
     public ManagementCart(Context context) {
         this.context = context;
-        this.tinyDB = new tinyDB(context);
+        this.tinyDB =  new TinyDB(context);
     }
 
-    public void insertFood(FoodDomain item){
+    public void insertFood(FoodDomain item) {
         ArrayList<FoodDomain> listFood = getListCart();
         boolean existAlready = false;
-        int n= 0;
+        int n = 0;
         for (int i = 0; i < listFood.size(); i++) {
-            if (listFood.get(i).getTitle().equals(item.getTitle())){
+            if (listFood.get(i).getTitle().equals(item.getTitle())) {
                 existAlready = true;
-                n=i;
+                n = i;
                 break;
             }
         }
-        if(existAlready){
+        if (existAlready) {
             listFood.get(n).setNumberInCart(item.getNumberInCart());
-        }else{
+        } else {
             listFood.add(item);
         }
 
@@ -39,19 +39,19 @@ public class ManagementCart {
         Toast.makeText(context, "Added to yor Cart", Toast.LENGTH_SHORT).show();
     }
 
-    public ArrayList<FoodDomain> getListCart(){
+    public ArrayList<FoodDomain> getListCart() {
         return tinyDB.getListObject("CardList");
 
 
     }
 
-    public void minusNumberFood(ArrayList<FoodDomain> listFood, int position, ChangeNumberItemsListener changeNumberItemsListener){
-        if(listFood.get(position).getNumberInCart()==1){
+    public void minusNumberFood(ArrayList<FoodDomain> listFood, int position, ChangeNumberItemsListener changeNumberItemsListener) {
+        if (listFood.get(position).getNumberInCart() == 1) {
             listFood.remove(position);
-        }else{
+        } else {
             listFood.get(position).setNumberInCart(listFood.get(position).getNumberInCart() - 1);
 
-            }
+        }
         tinyDB.putListObject("CardList", listFood);
         changeNumberItemsListener.changed();
     }
@@ -62,11 +62,13 @@ public class ManagementCart {
         changeNumberItemsListener.changed();
     }
 
-    public Double getTotalFee(){
+    public Double getTotalFee() {
         ArrayList<FoodDomain> listfood2 = getListCart();
         double fee = 0;
         for (int i = 0; i < listfood2.size(); i++) {
-            fee=fee+(listfood2.get(i).getFee()*listfood2.get(i).getNumberInCart());
+            fee = fee + (listfood2.get(i).getFee() * listfood2.get(i).getNumberInCart());
         }
+        return fee;
     }
+
 }

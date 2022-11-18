@@ -43,8 +43,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         holder.title.setText(listFoodSelected.get(position).getTitle());
         holder.feeEachItem.setText("$"+listFoodSelected.get(position).getFee());
         holder.totalEachItem.setText("$"+Math.round((listFoodSelected.get(position).getNumberInCart()*listFoodSelected.get(position).getFee())));
-        holder.num.setText(String.ValueOf(listFoodSelected.get(position).getNumberInCart()));
-
+        holder.num.setText(String.valueOf(listFoodSelected.get(position).getNumberInCart()));
 
 
         int drawableResourceId = holder.itemView.getContext().getResources()
@@ -57,12 +56,12 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
         holder.plusItem.setOnClickListener(v -> managementCart.plusNumberFood(listFoodSelected, position, ()-> {
                 notifyDataSetChanged();
-                changeNumberItemsListener,changed();
+                changeNumberItemsListener.changed();
         }));
-        holder.minusItem.setOnClickListener(v -> managementCart.minusNumberFood(listFoodSelected,position,()->)){
+        holder.minusItem.setOnClickListener(v -> managementCart.minusNumberFood(listFoodSelected,position,()-> {
             notifyDataSetChanged();
             changeNumberItemsListener.changed();
-        };
+        }));
     }
 
     @Override
@@ -70,13 +69,13 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
     public class  ViewHolder extends RecyclerView.ViewHolder{
         TextView title, feeEachItem;
         ImageView pic,plusItem,minusItem;
-        ImageView totalEachItem,num;
+        TextView totalEachItem,num;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            title = itemView.findViewById(R.id.title);
+            title = itemView.findViewById(R.id.titleTxt);
             pic = itemView.findViewById(R.id.pic);
-            feeEachItem = itemView.findViewById(R.id.fee);
+            feeEachItem = itemView.findViewById(R.id.feeEachItem);
             totalEachItem = itemView.findViewById(R.id.totalEachItem);
             plusItem=itemView.findViewById(R.id.plusCardBtn);
             minusItem=itemView.findViewById(R.id.minusCardBtn);

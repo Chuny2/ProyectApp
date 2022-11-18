@@ -1,5 +1,6 @@
 package com.example.projectapp.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -24,7 +25,7 @@ public class CartActivity extends AppCompatActivity {
     private ScrollView scrollView;
 
     @Override
-    protected void onCreate(Bundle saveInstanceState){
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
@@ -32,6 +33,28 @@ public class CartActivity extends AppCompatActivity {
 
         initView();
         initList();
+
+        bottomNavigation();
+        calculateCard();
+    }
+
+    private void bottomNavigation() {
+        LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout cartBtn = findViewById(R.id.cartBtn);
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CartActivity.this,MainActivity.class));
+            }
+        });
+
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CartActivity.this,CartActivity.class));
+            }
+        });
     }
 
     private void initList(){
@@ -40,6 +63,7 @@ public class CartActivity extends AppCompatActivity {
         adapter=new CartListAdapter(managementCart.getListCart(), this, new ChangeNumberItemsListener() {
             @Override
             public void changed() {
+
                 calculateCard();
             }
         });
@@ -56,7 +80,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void calculateCard(){
         double percentTax=0.02; //cambiar este texto para el precio de los impuestos.
-        delivery delivery=10; //cambiar esto para el precio del producto.
+        double delivery=10; //cambiar esto para el precio del producto.
 
         tax=Math.round((managementCart.getTotalFee()*percentTax)*100.0)/100.0;
         double total=Math.round((managementCart.getTotalFee()+tax+delivery)*100.0)/100.0;
@@ -72,7 +96,7 @@ public class CartActivity extends AppCompatActivity {
         totalFeeTxt=findViewById(R.id.totalFeeTxt);
         taxTxt=findViewById(R.id.taxTxt);
         deliveryTxt=findViewById(R.id.deliveryTxt);
-        totalTxt=findViewById(R.id.taxTxt);
+        totalTxt=findViewById(R.id.totalTxt);
         recyclerViewList=findViewById(R.id.view);
         scrollView=findViewById(R.id.scrollView);
         emptyTxt=findViewById(R.id.emptyTxt);

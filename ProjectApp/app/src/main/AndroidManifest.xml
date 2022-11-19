@@ -20,6 +20,12 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".Activity.ContactActivity"
+            android:exported="false">
+            <meta-data android:name="android.app.lib_name"
+                android:value=""/>
+        </activity>
+        <activity
             android:name=".Activity.ShowDetailActivity"
             android:exported="false">
             <meta-data

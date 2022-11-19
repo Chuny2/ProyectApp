@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private void bottomNavigation() {
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
         LinearLayout cartBtn = findViewById(R.id.cartBtn);
+        LinearLayout contactBtn=findViewById(R.id.contactBtn);
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,CartActivity.class));
             }
         });
+
+        contactBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ContactActivity.class));
+
+            }
+        });
+
     }
 
     private void recyclerViewPopular() {

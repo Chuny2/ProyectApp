@@ -184,7 +184,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
-                        android:text="Correo Javi"
+                        android:text="javilucaspro@gmail.com"
                         android:textColor="#0277BD"
                         android:textColorHighlight="@color/black"
                         android:textSize="16sp" />

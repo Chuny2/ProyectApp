@@ -42,6 +42,7 @@ public class CartActivity extends AppCompatActivity {
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
         LinearLayout cartBtn = findViewById(R.id.cartBtn);
 
+
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +56,9 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(new Intent(CartActivity.this,CartActivity.class));
             }
         });
+
+
+
     }
 
     private void initList(){
